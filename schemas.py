@@ -1,0 +1,59 @@
+from pydantic import BaseModel, EmailStr
+
+
+class CreateUser(BaseModel):
+    first_name:str
+    last_name:str
+    email:EmailStr
+
+class UserResponse(BaseModel):
+    id:int
+    first_name:str
+    last_name:str
+    email:EmailStr
+
+    class Config:
+        from_attributes = True
+
+class UserPrenotazione(BaseModel):
+    email:EmailStr
+
+
+class CreateVeicolo(BaseModel):
+    name:str
+    targa:str
+    desc:str
+    cost_per_day:float
+
+class VeicoloResponse(BaseModel):
+    id:int
+    name:str
+    targa:str
+    desc:str
+    status:str
+    cost_per_day:float
+
+    class Config:
+        from_attributes = True
+
+
+class VeicoloPrenotazione(BaseModel):
+    targa:str
+
+class AggiungiPrenotazione(BaseModel):
+    user:UserPrenotazione
+    veicolo:VeicoloPrenotazione
+    days:int
+
+    class Config:
+        from_attributes = True
+
+
+class PrenotazioneResponse(BaseModel):
+    id:int
+    user: UserResponse
+    veicolo: VeicoloResponse
+    prezzo_finale:float
+
+    class Config:
+        from_attributes = True

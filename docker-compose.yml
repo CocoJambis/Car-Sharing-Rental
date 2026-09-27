@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: app_postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: utente_docker
+      POSTGRES_PASSWORD: password_docker_sicura
+      POSTGRES_DB: database_docker
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+    build: .
+    container_name: python_main_api
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_URL: postgresql://utente_docker:password_docker_sicura@db:5432/database_docker
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
