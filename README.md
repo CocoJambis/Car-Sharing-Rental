@@ -34,8 +34,7 @@ Make sure you have Docker installed on your machine.
 
 1. Build and run the application using Docker:
    ```bash
-   docker build -t rental-api .
-   docker run -p 5000:5000 rental-api
+   docker compose up --build.
    ```
 
 2. The API will be available at `http://localhost:5000`.
