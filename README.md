@@ -34,7 +34,7 @@ Make sure you have Docker installed on your machine.
 
 1. Build and run the application using Docker:
    ```bash
-   docker compose up --build.
+   docker compose up --build
    ```
 
 2. The API will be available at `http://localhost:5000`.
