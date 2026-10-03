@@ -187,3 +187,12 @@ def test_elimina_user(db_session):
     user_eliminato = get_user_by_email(db_session, user.email)
 
     assert user_eliminato is None
+
+
+def test_elimina_utente_inesistente(db_session):
+
+    with pytest.raises(HTTPException) as exc_info:
+        delete_utente_by_email(db_session, "mario.rossi@gmail.com")
+
+    assert exc_info.value.status_code == 404
+    assert exc_info.value.detail == "email : mario.rossi@gmail.com non esistente!"
