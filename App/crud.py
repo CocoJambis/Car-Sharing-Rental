@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from models import User, Veicolo, Prenotazione
-from schemas import *
+from .models import User, Veicolo, Prenotazione
+from .schemas import *
 
 
 #Lista tutti i veicoli disponibili
@@ -125,7 +125,7 @@ def delete_utente_by_email(db:Session, email:str) -> None:
     if utente:
         db.delete(utente)
         db.commit()
-        return f"User con email : {utente.email} eliminato con successo!"
+        return f"User con email : {email} eliminato con successo!"
 
     else:
         raise HTTPException(status_code=404, detail=f"email : {email} non esistente!")

@@ -171,3 +171,19 @@ def test_elimina_prenotazione_inesistente(db_session):
     assert exc_info.value.status_code == 404
     assert exc_info.value.detail == "Prenotazione inesistente"
     
+def test_elimina_user(db_session):
+
+    user_in = CreateUser(first_name = "Mario", last_name = "Rossi", email= "mario.rossi@gmail.com")
+    user = create_user(db_session, user_in)
+
+    assert user.id is not None
+    assert user.first_name == "Mario"
+    assert user.email == "mario.rossi@gmail.com"
+
+    messaggio = delete_utente_by_email(db_session, user.email)
+
+    assert messaggio == f'User con email : {user.email} eliminato con successo!'
+
+    user_eliminato = get_user_by_email(db_session, user.email)
+
+    assert user_eliminato is None
