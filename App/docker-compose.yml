@@ -13,7 +13,9 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   api:
-    build: .
+    build:
+      context: ../
+      dockerfile: App/Dockerfile
     container_name: python_main_api
     restart: always
     ports:
