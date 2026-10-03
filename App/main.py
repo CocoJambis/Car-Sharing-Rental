@@ -1,9 +1,9 @@
 import uvicorn
 from fastapi import FastAPI, Depends, HTTPException
-from schemas import *
-import crud
-from db import get_db
-from models import *
+from App.schemas import *
+import App.crud as crud
+from App.db import get_db
+from App.models import *
 from sqlalchemy.orm import Session
 
 

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 
 
 class CreateUser(BaseModel):
@@ -12,8 +12,7 @@ class UserResponse(BaseModel):
     last_name:str
     email:EmailStr
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes= True)
 
 class UserPrenotazione(BaseModel):
     email:EmailStr
@@ -33,20 +32,21 @@ class VeicoloResponse(BaseModel):
     status:str
     cost_per_day:float
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes= True)
+
 
 
 class VeicoloPrenotazione(BaseModel):
     targa:str
+
+
 
 class AggiungiPrenotazione(BaseModel):
     user:UserPrenotazione
     veicolo:VeicoloPrenotazione
     days:int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes= True)
 
 
 class PrenotazioneResponse(BaseModel):
@@ -55,5 +55,4 @@ class PrenotazioneResponse(BaseModel):
     veicolo: VeicoloResponse
     prezzo_finale:float
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes= True)

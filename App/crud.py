@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from models import User, Veicolo, Prenotazione
-from schemas import *
+from App.models import User, Veicolo, Prenotazione
+from App.schemas import *
 
 
 #Lista tutti i veicoli disponibili
@@ -79,7 +79,7 @@ def elimina_veicolo(db:Session, targa:str) -> None:
         db.commit()
         return f'Veicolo con targa :{targa} eliminato con successo!'
     else:
-        HTTPException(status_code=404, detail=f'Veicolo con targa :{targa} non esistente')    
+        raise HTTPException(status_code=404, detail=f'Veicolo con targa :{targa} non esistente')    
  
 #Trova veicolo dalla targa
 def get_veicolo_by_targa(db:Session, targa) -> object:

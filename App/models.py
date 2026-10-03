@@ -1,7 +1,7 @@
 from typing import List
 from sqlalchemy import Integer, String, ForeignKey, Float
 from sqlalchemy.orm import declarative_base, relationship, mapped_column, Mapped
-from db import engine
+from App.db import engine
 
 
 Base = declarative_base()
