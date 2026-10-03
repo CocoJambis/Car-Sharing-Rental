@@ -10,7 +10,6 @@ def all_veicoli_disponibili(db:Session) -> list[object]:
 
     return [v for v in veicoli if v.status == 'Disponibile']
 
-
 #Lista tutte le prenotazioni
 def all_prenotazioni(db:Session) -> list[object]:
     return db.query(Prenotazione).all()
@@ -115,8 +114,6 @@ def create_user(db:Session, user_data:CreateUser) -> object:
 #Trova user by email
 def get_user_by_email(db:Session, email:str) -> object:
     return db.query(User).filter(User.email == email).one_or_none()
-
-
 
 #Elimina utente by email
 def delete_utente_by_email(db:Session, email:str) -> None:

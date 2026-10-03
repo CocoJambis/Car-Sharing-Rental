@@ -83,6 +83,7 @@ def delete_user(emaiL:str, db:Session = Depends(get_db)):
 def edit_veicolo(targa:str, edit_veicolo:VeicoloEdit, db:Session = Depends(get_db)):
     return crud.edit_veicolo_by_targa(db, targa = targa, veicolo_edit=edit_veicolo)
 
+
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=5000)
 

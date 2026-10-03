@@ -212,8 +212,7 @@ def test_edit_veicolo(db_session):
 
 
 def test_edit_veicolo_inesistente(db_session):
-
-
+    
     with pytest.raises(HTTPException) as exc_info:
         edit_veicolo_by_targa(db_session, targa = "DT293RA", veicolo_edit= None)
 
