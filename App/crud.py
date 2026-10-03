@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
-from App.models import User, Veicolo, Prenotazione
-from App.schemas import *
+from models import User, Veicolo, Prenotazione
+from schemas import *
 
 
 #Lista tutti i veicoli disponibili
