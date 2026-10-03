@@ -71,6 +71,13 @@ def all_veicoli_disp(db:Session = Depends(get_db)):
 
     return crud.all_veicoli_disponibili(db)
 
+
+#Elimina utente
+@app.delete('/user/{email}')
+def delete_user(emaiL:str, db:Session = Depends(get_db)):
+    
+    return crud.delete_utente_by_email(db, email=emaiL)
+
 if __name__ == '__main__':
     uvicorn.run(app, host='0.0.0.0', port=5000)
 

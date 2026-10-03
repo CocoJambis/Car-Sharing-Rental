@@ -117,3 +117,16 @@ def get_user_by_email(db:Session, email:str) -> object:
     return db.query(User).filter(User.email == email).one_or_none()
 
 
+
+#Elimina utente by email
+def delete_utente_by_email(db:Session, email:str) -> None:
+    utente = db.query(User).filter(User.email == email).one_or_none()
+
+    if utente:
+        db.delete(utente)
+        db.commit()
+        return f"User con email : {utente.email} eliminato con successo!"
+
+    else:
+        raise HTTPException(status_code=404, detail=f"email : {email} non esistente!")
+
