@@ -40,6 +40,12 @@ class VeicoloPrenotazione(BaseModel):
     targa:str
 
 
+class VeicoloEdit(BaseModel):
+    name:str
+    targa:str
+    desc:str
+    cost_per_day:float
+
 
 class AggiungiPrenotazione(BaseModel):
     user:UserPrenotazione

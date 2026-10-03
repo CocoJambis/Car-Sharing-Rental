@@ -130,3 +130,19 @@ def delete_utente_by_email(db:Session, email:str) -> None:
     else:
         raise HTTPException(status_code=404, detail=f"email : {email} non esistente!")
 
+#Edit veicolo
+def edit_veicolo_by_targa(db:Session, targa:str, veicolo_edit:VeicoloEdit) -> object:
+
+    veicolo = get_veicolo_by_targa(db, targa=targa)
+
+    if not veicolo:
+        raise HTTPException(status_code=404, detail=f"Veicolo con targa : {targa} inesistente")
+
+    update_data = veicolo_edit.model_dump(exclude_unset=True)
+
+    for k, v in update_data.items():
+        setattr(veicolo, k, v)
+
+    db.commit()
+    db.refresh(veicolo)
+    return veicolo

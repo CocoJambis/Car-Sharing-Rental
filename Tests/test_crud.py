@@ -196,3 +196,27 @@ def test_elimina_utente_inesistente(db_session):
 
     assert exc_info.value.status_code == 404
     assert exc_info.value.detail == "email : mario.rossi@gmail.com non esistente!"
+
+
+def test_edit_veicolo(db_session):
+    veicolo_in = CreateVeicolo(name = "Scirocco", targa = "DT293RG", desc = "160cv benzina", cost_per_day = 50.0)
+    veicolo = create_veicolo(db_session, veicolo_in)
+
+    edit_veicolo = VeicoloEdit(name= "Edit", targa = "ciao", desc = "150cv benzina", cost_per_day=20.0)
+
+    edit_veicolo_by_targa(db_session, targa= "DT293RG", veicolo_edit = edit_veicolo)
+
+    assert veicolo.name == "Edit"
+    assert veicolo.targa == "ciao"
+    assert veicolo.desc == "150cv benzina"
+
+
+def test_edit_veicolo_inesistente(db_session):
+
+
+    with pytest.raises(HTTPException) as exc_info:
+        edit_veicolo_by_targa(db_session, targa = "DT293RA", veicolo_edit= None)
+
+    assert exc_info.value.status_code == 404
+    assert exc_info.value.detail == f"Veicolo con targa : DT293RA inesistente"
+
