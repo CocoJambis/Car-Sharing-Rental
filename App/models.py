@@ -1,7 +1,7 @@
 from typing import List
 from sqlalchemy import Integer, String, ForeignKey, Float
 from sqlalchemy.orm import declarative_base, relationship, mapped_column, Mapped
-from .db import engine
+from App.db import engine
 
 
 Base = declarative_base()
@@ -57,7 +57,5 @@ class Prenotazione(Base):
         return self.prezzo_finale
 
 
-
-
-#Base.metadata.drop_all(engine)
-Base.metadata.create_all(engine)
+if __name__ == "__main__":
+    Base.metadata.create_all(engine)
